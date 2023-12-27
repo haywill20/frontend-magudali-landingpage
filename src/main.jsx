@@ -30,6 +30,8 @@ import "./assets/css/default.css";
 import "./assets/css/style.css";
 import "./assets/css/responsive.css";
 import AboutUs from "./components/pages/AboutUs/AboutUs";
+import Faqs from "./components/pages/Faqs/Faqs";
+import DeleteAccount from "./components/pages/DeleteAccount/DeleteAccount";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -61,6 +63,8 @@ function App() {
             <Route path="/register" element={<RegisterCv />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/aboutUs" element={<AboutUs />} />
+            <Route path="/faqs" element={<Faqs />} />
+            <Route path="/deleteAccount" element={<DeleteAccount />} />
           </Routes>
         </ScrollToTop>
       </Router>

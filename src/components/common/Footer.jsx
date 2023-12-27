@@ -94,7 +94,7 @@ function Footer({ isAboutPage }) {
                     <a href="/404">Comunidad</a>
                   </li>
                   <li>
-                    <a href="/404">Faqs</a>
+                    <a href="/faqs">Faqs</a>
                   </li>
                   <li>
                     <Link to="/terms" replace>
