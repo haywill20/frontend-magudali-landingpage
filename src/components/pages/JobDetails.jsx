@@ -10,7 +10,7 @@ import { empleos } from "../data/DataListas";
 import apiUrl from "../config/Config";
 import { Link } from "react-router-dom";
 
-const URI = `${apiUrl}/empleos/`;
+const URI = `${apiUrl}/empleo/`;
 
 const JobDetails = () => {
   const [empleo, setEmpleo] = useState({});
