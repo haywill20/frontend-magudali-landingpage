@@ -64,7 +64,7 @@ function Section2() {
                 data-wow-duration="2000ms"
                 data-wow-delay="600ms"
               >
-                <a href="https://panel.magudali.com/seller/login">
+                <a href="https://magudali.com/seller/login">
                   <img src={Admin} alt="" />
                 </a>
                 <h4 className="appie-title">Admin Web</h4>
