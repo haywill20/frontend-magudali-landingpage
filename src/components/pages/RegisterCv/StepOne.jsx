@@ -26,9 +26,7 @@ const StepOne = ({
   setSelectedDisponibilidad,
   isOpenDisponibilidad,
   disponibilidades,
-  empleos,
-  isOpenEmpleo,
-  selectedEmpleo,
+  empleo,
   aniosExperiencia,
   setAniosExperiencia,
   expectativaSalario,
@@ -43,18 +41,18 @@ const StepOne = ({
   handleAgregarEducacion,
 }) => {
   const handleWheel = (e) => {
-    if (e.target.type === 'number') {
+    if (e.target.type === "number") {
       e.preventDefault();
     }
   };
-  
+
   // ...
-  
+
   useEffect(() => {
-    window.addEventListener('wheel', handleWheel, { passive: false });
-  
+    window.addEventListener("wheel", handleWheel, { passive: false });
+
     return () => {
-      window.removeEventListener('wheel', handleWheel);
+      window.removeEventListener("wheel", handleWheel);
     };
   }, []);
 
@@ -227,25 +225,9 @@ const StepOne = ({
               id="empleo"
               name="empleo"
               readOnly
-              placeholder="Seleccione la vacante de empleo"
-              onClick={() => toggleDropdown("empleo")}
-              value={selectedEmpleo}
-              onChange={(e) => selectedEmpleo(e.target.value)}
+              placeholder={`${empleo}`}
+              value={empleo}
             />
-            {isOpenEmpleo && (
-              <ul style={styles.ul} className="country-list" ref={dropdownRef}>
-                {empleos.map((empleo) => (
-                  <li
-                    style={styles.li}
-                    key={empleo.id}
-                    className="list-item"
-                    onClick={() => handleSelect(empleo.nombre, "empleo")}
-                  >
-                    {empleo.nombre}
-                  </li>
-                ))}
-              </ul>
-            )}
           </div>
         </div>
 

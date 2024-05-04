@@ -60,7 +60,7 @@ function App() {
             <Route path="/privacyPolicies" element={<PrivacyPoliciesPage />} />
             <Route path="/jobsPage" element={<JobsPage />} />
             <Route path="/jobdetails/:id" element={<JobDetails />} />
-            <Route path="/register" element={<RegisterCv />} />
+            <Route path="/register/:id" element={<RegisterCv />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/aboutUs" element={<AboutUs />} />
             <Route path="/faqs" element={<Faqs />} />

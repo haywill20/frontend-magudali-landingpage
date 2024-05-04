@@ -10,7 +10,7 @@ const CardJobs = ({ estilo, icon, nombre, resumen, id }) => {
       </div>
       <h4 className="title">{nombre}</h4>
       <p>{resumen}</p>
-      <Link to="/register" target="_blank" rel="noopener noreferrer">
+      <Link to={`/register/${id}`} target="_blank" rel="noopener noreferrer">
         Aplicar <i className="fa-solid fa-check"></i>
       </Link>
       <br />

@@ -88,7 +88,7 @@ const JobDetails = () => {
         <div className="row mt-30 align-items-center">
           <div className="col-lg-12 text-center">
             {" "}
-            <Link to="/register">
+            <Link to={`/register/${id}`}>
               <div className="btn btn-success mx-auto">
                 Aplicar a esta vacante
               </div>
