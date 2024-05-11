@@ -65,6 +65,7 @@ function App() {
             <Route path="/aboutUs" element={<AboutUs />} />
             <Route path="/faqs" element={<Faqs />} />
             <Route path="/deleteAccount" element={<DeleteAccount />} />
+            <Route path='*' element={<ErrorPage />} />
           </Routes>
         </ScrollToTop>
       </Router>
