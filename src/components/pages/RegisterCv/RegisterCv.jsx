@@ -63,7 +63,6 @@ const RegisterCv = () => {
   const [selectedCountry, setSelectedCountry] = useState("");
   const [isOpenDisponibilidad, setIsOpenDisponibilidad] = useState(false);
   const [selectedDisponibilidad, setSelectedDisponibilidad] = useState("");
-  const [isOpenEmpleo, setIsOpenEmpleo] = useState(false);
   const [selectedEmpleo, setSelectedEmpleo] = useState("");
   const [aniosExperiencia, setAniosExperiencia] = useState("");
   const [expectativaSalario, setExpectativaSalario] = useState("");
@@ -133,7 +132,7 @@ const RegisterCv = () => {
     setTelefono("");
     setSelectedCountry("");
     setSelectedDisponibilidad("");
-    setSelectedEmpleo("");
+    setEmpleo("");
     setAniosExperiencia("");
     setExpectativaSalario("");
     setResumen("");
@@ -205,7 +204,7 @@ const RegisterCv = () => {
         telefono: telefono,
         pais: selectedCountry,
         disponibilidad: selectedDisponibilidad,
-        vacante: selectedEmpleo,
+        vacante: empleo,
         aniosExperiencia: aniosExperiencia,
         expectativaSalario: expectativaSalario,
         resumen: resumen,
@@ -347,13 +346,13 @@ const RegisterCv = () => {
         telefono,
         selectedCountry,
         selectedDisponibilidad,
-        selectedEmpleo,
+        empleo,
         aniosExperiencia,
         expectativaSalario,
         resumen,
         educacionFields
       );
-
+      console.log(validateStepOne);
       if (validateStepOne) {
         setActiveStep((prevStep) => prevStep + 1);
       } else {
@@ -727,6 +726,7 @@ const RegisterCv = () => {
               isOpenDisponibilidad={isOpenDisponibilidad}
               disponibilidades={disponibilidades}
               empleo={empleo.nombre}
+              setEmpleo={setEmpleo}
               aniosExperiencia={aniosExperiencia}
               setAniosExperiencia={setAniosExperiencia}
               expectativaSalario={expectativaSalario}
