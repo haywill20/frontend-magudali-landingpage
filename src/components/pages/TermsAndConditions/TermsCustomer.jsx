@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import Header from "../common/Header";
-import Footer from "../common/Footer";
-import thumb from "../../assets/images/fun-fact-thumb.png";
+import Header from "../../common/Header";
+import Footer from "../../common/Footer";
+import thumb from "../../../assets/images/fun-fact-thumb.png";
 function TermsCustomer() {
   useEffect(() => {
     document.title = "Términos para Clientes"; // Establecer el título del documento

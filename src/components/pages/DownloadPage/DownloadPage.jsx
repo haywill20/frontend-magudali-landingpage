@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-import Header from "../common/Header";
-import Footer from "../common/Footer";
-import iOS from "../../assets/images/ios.png";
-import Android from "../../assets/images/android.png";
+import Header from "../../common/Header";
+import Footer from "../../common/Footer";
+import iOS from "../../../assets/images/ios.png";
+import Android from "../../../assets/images/android.png";
 
 function Download() {
   useEffect(() => {

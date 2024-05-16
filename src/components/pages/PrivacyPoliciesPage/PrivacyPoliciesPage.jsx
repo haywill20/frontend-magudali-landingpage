@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import Header from "../common/Header";
-import Footer from "../common/Footer";
-import thumb from "../../assets/images/privacy-policies.png";
+import Header from "../../common/Header";
+import Footer from "../../common/Footer";
+import thumb from "../../../assets/images/privacy-policies.png";
 
 function PrivacyPoliciesPage() {
   useEffect(() => {

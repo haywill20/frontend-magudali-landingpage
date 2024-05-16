@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import Footer from "../common/Footer";
-import Header from "../common/Header";
-import Card from "../shared/CardJobs";
-import apiUrl from "../config/Config";
-import Error from "./ErrorPage"
+import Footer from "../../common/Footer";
+import Header from "../../common/Header";
+import Card from "../../shared/CardJobs";
+import apiUrl from "../../config/Config";
+import Error from "../ErrorPage/ErrorPage"
 import axios from "axios";
 const URI = `${apiUrl}/empleos/`;
 

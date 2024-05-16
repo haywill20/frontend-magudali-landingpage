@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import Header from "../common/Header";
-import Footer from "../common/Footer";
-import shape15 from "../../assets/images/shape/shape-15.png";
-import shape14 from "../../assets/images/shape/shape-14.png";
-import shape13 from "../../assets/images/shape/shape-13.png";
+import Header from "../../common/Header";
+import Footer from "../../common/Footer";
+import shape15 from "../../../assets/images/shape/shape-15.png";
+import shape14 from "../../../assets/images/shape/shape-14.png";
+import shape13 from "../../../assets/images/shape/shape-13.png";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import { empleos } from "../data/DataListas";
-import apiUrl from "../config/Config";
+import { empleos } from "../../data/DataListas";
+import apiUrl from "../../config/Config";
 import { Link } from "react-router-dom";
 
 const URI = `${apiUrl}/empleo/`;

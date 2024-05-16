@@ -1,7 +1,7 @@
 import React from "react";
-import thumb from "../../assets/images/fun-fact-thumb.png";
-import Footer from "../common/Footer";
-import Header from "../common/Header";
+import thumb from "../../../assets/images/fun-fact-thumb.png";
+import Footer from "../../common/Footer";
+import Header from "../../common/Header";
 
 function TermsDelivery() {
   return (
