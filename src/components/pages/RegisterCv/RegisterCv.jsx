@@ -63,7 +63,6 @@ const RegisterCv = () => {
   const [selectedCountry, setSelectedCountry] = useState("");
   const [isOpenDisponibilidad, setIsOpenDisponibilidad] = useState(false);
   const [selectedDisponibilidad, setSelectedDisponibilidad] = useState("");
-  const [selectedEmpleo, setSelectedEmpleo] = useState("");
   const [aniosExperiencia, setAniosExperiencia] = useState("");
   const [expectativaSalario, setExpectativaSalario] = useState("");
   const [resumen, setResumen] = useState("");
@@ -408,7 +407,7 @@ const RegisterCv = () => {
           allowOutsideClick: false,
         }).then((result) => {
           if (result.isConfirmed) {
-            window.location.href = "/register";
+            window.location.href = "/jobsPage";
           }
         });
       } else {
