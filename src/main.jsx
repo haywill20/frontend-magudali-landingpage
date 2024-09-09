@@ -32,6 +32,7 @@ import "./assets/css/responsive.css";
 import AboutUs from "./components/pages/AboutUs/AboutUs";
 import Faqs from "./components/pages/Faqs/Faqs";
 import DeleteAccount from "./components/pages/DeleteAccount/DeleteAccount";
+import ComingSoonPage from "./components/pages/ComingSoon/ComingSoonPage";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -65,7 +66,8 @@ function App() {
             <Route path="/aboutUs" element={<AboutUs />} />
             <Route path="/faqs" element={<Faqs />} />
             <Route path="/deleteAccount" element={<DeleteAccount />} />
-            <Route path='*' element={<ErrorPage />} />
+            <Route path="/comingSoonPage" element={<ComingSoonPage />} />
+            <Route path="*" element={<ErrorPage />} />
           </Routes>
         </ScrollToTop>
       </Router>
