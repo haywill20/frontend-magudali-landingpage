@@ -56,7 +56,7 @@ function Download() {
                 <div className="content">
                   <h4 className="title">iOS & iPadOS</h4>
                   <p>Ya disponible en AppStore.</p>
-                  <a className="main-btn main-btn-2" href="#">
+                  <a className="main-btn main-btn-2" href="/comingSoonPage">
                     <i className="fab fa-apple"></i>Descargar para iOS
                   </a>
                 </div>
