@@ -23,7 +23,7 @@ function Section1() {
                 </p>
                 <ul>
                   <li>
-                    <a href="#">
+                    <a href="/comingSoonPage">
                       <i className="fab fa-apple"></i> Descargar para iOS
                     </a>
                   </li>
