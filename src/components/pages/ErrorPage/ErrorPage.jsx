@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import error from "../../assets/images/error.gif";
-import Header from "../common/Header";
-import Footer from "../common/Footer";
+import error from "../../../assets/images/error.gif";
+import Header from "../../common/Header";
+import Footer from "../../common/Footer";
 import { Link } from "react-router-dom";
 function Error() {
   useEffect(() => {

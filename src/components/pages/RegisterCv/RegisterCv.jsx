@@ -3,22 +3,21 @@ import Header from "../../common/Header";
 import Footer from "../../common/Footer";
 import apiUrl from "../../config/Config";
 import validateFieldStepOne from "../../helper/ValidateFieldStepOne";
-import validateFieldStepTwo  from "../../helper/ValidateFieldStepTwo";
-import validateFieldStepThree  from "../../helper/ValidateFieldStepThree";
+import validateFieldStepTwo from "../../helper/ValidateFieldStepTwo";
+import validateFieldStepThree from "../../helper/ValidateFieldStepThree";
 
 import axios from "axios";
 import StepOne from "./StepOne";
 import StepTwo from "./StepTwo";
 import StepThree from "./StepThree";
 
-
-const URIempleos = `${apiUrl}/empleos/`;
+const URIempleo = `${apiUrl}/empleo/`;
 const URIdatosgenerales = `${apiUrl}/datosgenerales/`;
 const URIeducaciones = `${apiUrl}/educaciones/`;
 const URIcertificaciones = `${apiUrl}/certificaciones/`;
 const URIexperienciaslaborales = `${apiUrl}/experienciaslaborales/`;
 
-import Stepper from 'react-stepper-horizontal';
+import Stepper from "react-stepper-horizontal";
 
 import {
   countryCodes,
@@ -26,24 +25,33 @@ import {
   disponibilidades,
   sistemasOperativos,
   lenguajesProgramacion,
-  tools,  
+  tools,
   librerias,
   dataBases,
   cloud,
   niveles,
 } from "../../data/DataListas";
-import { redirect } from "react-router-dom";
+import { redirect, useParams } from "react-router-dom";
 
 const RegisterCv = () => {
-  const [empleos, setEmpleos] = useState([]);
+  const [empleo, setEmpleo] = useState([]);
+  const { id } = useParams();
+
   useEffect(() => {
-    getEmpleos();
+    getEmpleo();
   }, []);
 
-  const getEmpleos = async () => {
-    const res = await axios.get(URIempleos);
-    setEmpleos(res.data);
+  //Procedimiento para mostrar un empleo
+  const getEmpleo = async () => {
+    try {
+      const res = await axios.get(URIempleo + id);
+      console.log("Datos de empleo:", res.data); // Agrega este log para verificar la respuesta
+      setEmpleo(res.data);
+    } catch (error) {
+      console.error("Error al cargar el empleo:", error);
+    }
   };
+
   const [mostrarModal, setMostrarModal] = useState(false);
 
   const [nombre, setNombre] = useState("");
@@ -55,8 +63,6 @@ const RegisterCv = () => {
   const [selectedCountry, setSelectedCountry] = useState("");
   const [isOpenDisponibilidad, setIsOpenDisponibilidad] = useState(false);
   const [selectedDisponibilidad, setSelectedDisponibilidad] = useState("");
-  const [isOpenEmpleo, setIsOpenEmpleo] = useState(false);
-  const [selectedEmpleo, setSelectedEmpleo] = useState("");
   const [aniosExperiencia, setAniosExperiencia] = useState("");
   const [expectativaSalario, setExpectativaSalario] = useState("");
   const [resumen, setResumen] = useState("");
@@ -125,7 +131,7 @@ const RegisterCv = () => {
     setTelefono("");
     setSelectedCountry("");
     setSelectedDisponibilidad("");
-    setSelectedEmpleo("");
+    setEmpleo("");
     setAniosExperiencia("");
     setExpectativaSalario("");
     setResumen("");
@@ -197,7 +203,7 @@ const RegisterCv = () => {
         telefono: telefono,
         pais: selectedCountry,
         disponibilidad: selectedDisponibilidad,
-        vacante: selectedEmpleo,
+        vacante: empleo,
         aniosExperiencia: aniosExperiencia,
         expectativaSalario: expectativaSalario,
         resumen: resumen,
@@ -329,9 +335,8 @@ const RegisterCv = () => {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   };
 
-
-  const handleNext = () => {    
-    if (activeStep === 0 ) {
+  const handleNext = () => {
+    if (activeStep === 0) {
       const validateStepOne = validateFieldStepOne(
         nombre,
         apellido,
@@ -340,46 +345,46 @@ const RegisterCv = () => {
         telefono,
         selectedCountry,
         selectedDisponibilidad,
-        selectedEmpleo,
+        empleo,
         aniosExperiencia,
         expectativaSalario,
         resumen,
         educacionFields
       );
-
-      if (validateStepOne){
-        setActiveStep((prevStep) => prevStep + 1); 
+      console.log(validateStepOne);
+      if (validateStepOne) {
+        setActiveStep((prevStep) => prevStep + 1);
       } else {
         Swal.fire({
-          title: 'Error',
-          text: 'Necesita llenar todos los campos, para continuar.',
-          icon: 'error',
-          confirmButtonText: 'Aceptar',
-          confirmButtonColor: '#007bff',
-        })
+          title: "Error",
+          text: "Necesita llenar todos los campos, para continuar.",
+          icon: "error",
+          confirmButtonText: "Aceptar",
+          confirmButtonColor: "#007bff",
+        });
       }
-    } 
+    }
 
-    if (activeStep === 1 ) {
+    if (activeStep === 1) {
       const validateStepTwo = validateFieldStepTwo(
         experienciaFields,
         certificacionFields
       );
-  
-      if (validateStepTwo){
-          setActiveStep((prevStep) => prevStep + 1); 
+
+      if (validateStepTwo) {
+        setActiveStep((prevStep) => prevStep + 1);
       } else {
         Swal.fire({
-          title: 'Error',
-          text: 'Necesita llenar todos los campos, para continuar.',
-          icon: 'error',
-          confirmButtonText: 'Aceptar',
-          confirmButtonColor: '#007bff',
-        })
+          title: "Error",
+          text: "Necesita llenar todos los campos, para continuar.",
+          icon: "error",
+          confirmButtonText: "Aceptar",
+          confirmButtonColor: "#007bff",
+        });
       }
     }
 
-    if (activeStep === 2 ) {
+    if (activeStep === 2) {
       const validateStepThree = validateFieldStepThree(
         selectedSistemasOperativos,
         selectedLenguajesProgramacion,
@@ -388,31 +393,31 @@ const RegisterCv = () => {
         selectedDataBases,
         selectedCloud,
         selectedEspanol,
-        selectedIngles        
+        selectedIngles
       );
 
-      if (validateStepThree){
+      if (validateStepThree) {
         guardar();
         Swal.fire({
-          title: 'Éxito',
-          text: 'Datos guardados correctamente.',
-          icon: 'success',
-          confirmButtonText: 'Aceptar',
-          confirmButtonColor: '#007bff',
-          allowOutsideClick: false, 
+          title: "Éxito",
+          text: "Datos guardados correctamente.",
+          icon: "success",
+          confirmButtonText: "Aceptar",
+          confirmButtonColor: "#007bff",
+          allowOutsideClick: false,
         }).then((result) => {
           if (result.isConfirmed) {
-            window.location.href = '/register';
+            window.location.href = "/jobsPage";
           }
-        })
+        });
       } else {
         Swal.fire({
-          title: 'Error',
-          text: 'Necesita llenar todos los campos, para guardar.',
-          icon: 'error',
-          confirmButtonText: 'Aceptar',
-          confirmButtonColor: '#007bff',
-        })
+          title: "Error",
+          text: "Necesita llenar todos los campos, para guardar.",
+          icon: "error",
+          confirmButtonText: "Aceptar",
+          confirmButtonColor: "#007bff",
+        });
       }
     }
   };
@@ -429,8 +434,6 @@ const RegisterCv = () => {
       setIsOpenCountry(!isOpenCountry);
     } else if (dropdownName === "disponibilidad") {
       setIsOpenDisponibilidad(!isOpenDisponibilidad);
-    } else if (dropdownName === "empleo") {
-      setIsOpenEmpleo(!isOpenEmpleo);
     } else if (dropdownName === "sistemasOperativos") {
       setIsOpenSistemasOperativos(!isOpenSistemasOperativos);
     } else if (dropdownName === "lenguajesProgramacion") {
@@ -457,9 +460,6 @@ const RegisterCv = () => {
     } else if (dropdownName === "disponibilidad") {
       setSelectedDisponibilidad(value);
       setIsOpenDisponibilidad(false);
-    } else if (dropdownName === "empleo") {
-      setSelectedEmpleo(value);
-      setIsOpenEmpleo(false);
     } else if (dropdownName === "sistemasOperativos") {
       if (selectedSistemasOperativos.includes(value)) {
         // Si el elemento ya está seleccionado, quitarlo
@@ -529,7 +529,6 @@ const RegisterCv = () => {
     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
       setIsOpenCountry(false);
       setIsOpenDisponibilidad(false);
-      setIsOpenEmpleo(false);
       setIsOpenSistemasOperativos(false);
       setIsOpenLenguajesProgramacion(false);
       setIsOpenTools(false);
@@ -662,9 +661,9 @@ const RegisterCv = () => {
   };
 
   const steps = [
-    { title: 'Datos generales' },
-    { title: 'Experciencias laborales' },
-    { title: 'Habilidades' },
+    { title: "Datos generales" },
+    { title: "Experciencias laborales" },
+    { title: "Habilidades" },
   ];
 
   // function getSectionComponent() {
@@ -697,10 +696,8 @@ const RegisterCv = () => {
       </section>
 
       <div>
-        <Stepper
-          steps={steps}
-          activeStep={activeStep} />
-        <div className="container mt-5" style={{ padding: '5 px' }}>
+        <Stepper steps={steps} activeStep={activeStep} />
+        <div className="container mt-5" style={{ padding: "5 px" }}>
           {activeStep === 0 && (
             <StepOne
               activeStep={activeStep}
@@ -727,9 +724,8 @@ const RegisterCv = () => {
               setSelectedDisponibilidad={setSelectedDisponibilidad}
               isOpenDisponibilidad={isOpenDisponibilidad}
               disponibilidades={disponibilidades}
-              empleos={empleos}
-              isOpenEmpleo={isOpenEmpleo}
-              selectedEmpleo={selectedEmpleo}
+              empleo={empleo.nombre}
+              setEmpleo={setEmpleo}
               aniosExperiencia={aniosExperiencia}
               setAniosExperiencia={setAniosExperiencia}
               expectativaSalario={expectativaSalario}
@@ -737,68 +733,67 @@ const RegisterCv = () => {
               handleExpectativaSalarioChange={handleExpectativaSalarioChange}
               resumen={resumen}
               setResumen={setResumen}
-              educacionFields = {educacionFields}
-              handleInputChangeEducacion = {handleInputChangeEducacion}
-              generateYearsRange = {generateYearsRange}
-              handleEliminarEducacion = {handleEliminarEducacion}
-              handleAgregarEducacion = {handleAgregarEducacion}
+              educacionFields={educacionFields}
+              handleInputChangeEducacion={handleInputChangeEducacion}
+              generateYearsRange={generateYearsRange}
+              handleEliminarEducacion={handleEliminarEducacion}
+              handleAgregarEducacion={handleAgregarEducacion}
             />
           )}
           {activeStep === 1 && (
-          
             <StepTwo
-            activeStep = {activeStep}
-            experienciaFields = {experienciaFields}
-            setExperienciaFields = {setExperienciaFields}
-            handleInputChangeExperiencia = {handleInputChangeExperiencia}
-            generateYearsRange = {generateYearsRange}
-            handleAgregarExperiencia = {handleAgregarExperiencia}
-            handleEliminarExperiencia = {handleEliminarExperiencia}
-            certificacionFields = {certificacionFields}
-            handleInputChangeCertificacion = {handleInputChangeCertificacion}
-            handleEliminarCertificacion = {handleEliminarCertificacion}
-            handleAgregarCertificacion = {handleAgregarCertificacion}
+              activeStep={activeStep}
+              experienciaFields={experienciaFields}
+              setExperienciaFields={setExperienciaFields}
+              handleInputChangeExperiencia={handleInputChangeExperiencia}
+              generateYearsRange={generateYearsRange}
+              handleAgregarExperiencia={handleAgregarExperiencia}
+              handleEliminarExperiencia={handleEliminarExperiencia}
+              certificacionFields={certificacionFields}
+              handleInputChangeCertificacion={handleInputChangeCertificacion}
+              handleEliminarCertificacion={handleEliminarCertificacion}
+              handleAgregarCertificacion={handleAgregarCertificacion}
             />
-
-
           )}
           {activeStep === 2 && (
             <StepThree
-            activeStep = {activeStep}
-            toggleDropdown = {toggleDropdown}
-            isOpenSistemasOperativos = {isOpenSistemasOperativos}
-            dropdownRef = {dropdownRef}
-            selectedSistemasOperativos = {selectedSistemasOperativos}
-            setSelectedSistemasOperativos = {setSelectedSistemasOperativos}
-            sistemasOperativos = {sistemasOperativos}
-            handleSelect = {handleSelect}
-            selectedLenguajesProgramacion = {selectedLenguajesProgramacion}
-            setSelectedLenguajesProgramacion = {setSelectedLenguajesProgramacion}
-            isOpenLenguajesProgramacion = {isOpenLenguajesProgramacion}
-            lenguajesProgramacion = {lenguajesProgramacion}
-            setSelectetTools = {setSelectetTools}
-            isOpenTools = {isOpenTools}
-            tools = {tools}
-            selectedTools = {selectedTools}
-            setSelectedLibrerias = {setSelectedLibrerias}
-            selectedLibrerias = {selectedLibrerias}
-            isOpenLibrerias = {isOpenLibrerias}
-            librerias = {librerias}
-            setSelectedDataBases = {setSelectedDataBases}
-            isOpenDataBases = {isOpenDataBases}
-            dataBases = {dataBases}
-            selectedDataBases = {selectedDataBases}
-            setSelectedCloud = {setSelectedCloud}
-            selectedCloud = {selectedCloud}
-            isOpenCloud = {isOpenCloud}
-            cloud = {cloud}
-            setSelectedEspanol = {setSelectedEspanol}
-            selectedEspanol = {selectedEspanol}
-            isOpenEspanol = {isOpenEspanol}
-            niveles = {niveles}
-            selectedIngles = {selectedIngles}
-            setSelectedIngles = {setSelectedIngles}
-            isOpenIngles = {isOpenIngles}
+              activeStep={activeStep}
+              toggleDropdown={toggleDropdown}
+              isOpenSistemasOperativos={isOpenSistemasOperativos}
+              dropdownRef={dropdownRef}
+              selectedSistemasOperativos={selectedSistemasOperativos}
+              setSelectedSistemasOperativos={setSelectedSistemasOperativos}
+              sistemasOperativos={sistemasOperativos}
+              handleSelect={handleSelect}
+              selectedLenguajesProgramacion={selectedLenguajesProgramacion}
+              setSelectedLenguajesProgramacion={
+                setSelectedLenguajesProgramacion
+              }
+              isOpenLenguajesProgramacion={isOpenLenguajesProgramacion}
+              lenguajesProgramacion={lenguajesProgramacion}
+              setSelectetTools={setSelectetTools}
+              isOpenTools={isOpenTools}
+              tools={tools}
+              selectedTools={selectedTools}
+              setSelectedLibrerias={setSelectedLibrerias}
+              selectedLibrerias={selectedLibrerias}
+              isOpenLibrerias={isOpenLibrerias}
+              librerias={librerias}
+              setSelectedDataBases={setSelectedDataBases}
+              isOpenDataBases={isOpenDataBases}
+              dataBases={dataBases}
+              selectedDataBases={selectedDataBases}
+              setSelectedCloud={setSelectedCloud}
+              selectedCloud={selectedCloud}
+              isOpenCloud={isOpenCloud}
+              cloud={cloud}
+              setSelectedEspanol={setSelectedEspanol}
+              selectedEspanol={selectedEspanol}
+              isOpenEspanol={isOpenEspanol}
+              niveles={niveles}
+              selectedIngles={selectedIngles}
+              setSelectedIngles={setSelectedIngles}
+              isOpenIngles={isOpenIngles}
             />
           )}
           <hr />
@@ -810,11 +805,17 @@ const RegisterCv = () => {
             )}
 
             {activeStep !== steps.length - 1 ? (
-              <button className="btn btn-primary ml-auto p-2" onClick={handleNext}>
+              <button
+                className="btn btn-primary ml-auto p-2"
+                onClick={handleNext}
+              >
                 Siguiente <i className="fas fa-chevron-right"></i>
               </button>
             ) : (
-              <button className="btn btn-primary ml-auto p-2"  onClick={handleNext} >
+              <button
+                className="btn btn-primary ml-auto p-2"
+                onClick={handleNext}
+              >
                 Terminar <i className="fas fa-check"></i>
               </button>
             )}

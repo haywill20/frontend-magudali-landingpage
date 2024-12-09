@@ -6,20 +6,20 @@ import {
   Routes,
 } from "react-router-dom";
 import ReactDOM from "react-dom/client";
-import Home from "./components/pages/Home";
-import ErrorPage from "./components/pages/ErrorPage";
-import DownloadPage from "./components/pages/DownloadPage";
-import TermsAndConditions from "./components/pages/TermsAndConditions";
+import Home from "./components/pages/Home/Home";
+import ErrorPage from "./components/pages/ErrorPage/ErrorPage";
+import DownloadPage from "./components/pages/DownloadPage/DownloadPage";
+import TermsAndConditions from "./components/pages/TermsAndConditions/TermsAndConditions";
 import Preloader from "./components/Preloader";
 import ScrollToTop from "./components/helper/ScrollToTop";
-import TermsCustomer from "./components/pages/TermsCustomer";
-import PrivacyPoliciesPage from "./components/pages/PrivacyPoliciesPage";
-import JobsPage from "./components/pages/JobsPage";
+import TermsCustomer from "./components/pages/TermsAndConditions/TermsCustomer";
+import PrivacyPoliciesPage from "./components/pages/PrivacyPoliciesPage/PrivacyPoliciesPage";
+import JobsPage from "./components/pages/JobsPage/JobsPage";
 import RegisterCv from "./components/pages/RegisterCv/RegisterCv";
-import TermsSeller from "./components/pages/TermsSeller";
-import TermsDelivery from "./components/pages/TermsDelivery";
-import ContactPage from "./components/pages/ContactPage";
-import JobDetails from "./components/pages/JobDetails";
+import TermsSeller from "./components/pages/TermsAndConditions/TermsSeller";
+import TermsDelivery from "./components/pages/TermsAndConditions/TermsDelivery";
+import ContactPage from "./components/pages/ContactPage/ContactPage";
+import JobDetails from "./components/pages/JobDetails/JobDetails";
 import "./assets/css/bootstrap.min.css";
 import "./assets/css/font-awesome.min.css";
 import "./assets/css/animate.min.css";
@@ -32,6 +32,7 @@ import "./assets/css/responsive.css";
 import AboutUs from "./components/pages/AboutUs/AboutUs";
 import Faqs from "./components/pages/Faqs/Faqs";
 import DeleteAccount from "./components/pages/DeleteAccount/DeleteAccount";
+import ComingSoonPage from "./components/pages/ComingSoon/ComingSoonPage";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -60,11 +61,13 @@ function App() {
             <Route path="/privacyPolicies" element={<PrivacyPoliciesPage />} />
             <Route path="/jobsPage" element={<JobsPage />} />
             <Route path="/jobdetails/:id" element={<JobDetails />} />
-            <Route path="/register" element={<RegisterCv />} />
+            <Route path="/register/:id" element={<RegisterCv />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/aboutUs" element={<AboutUs />} />
             <Route path="/faqs" element={<Faqs />} />
             <Route path="/deleteAccount" element={<DeleteAccount />} />
+            <Route path="/comingSoonPage" element={<ComingSoonPage />} />
+            <Route path="*" element={<ErrorPage />} />
           </Routes>
         </ScrollToTop>
       </Router>

@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import Footer from "../common/Footer";
-import Header from "../common/Header";
-import Card from "../shared/Card";
-import data from "../data/DataTerms";
+import Footer from "../../common/Footer";
+import Header from "../../common/Header";
+import Card from "../../shared/Card";
+import data from "../../data/DataTerms";
 
 function TermsAndConditions() {
   useEffect(() => {

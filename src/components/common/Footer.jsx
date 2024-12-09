@@ -69,7 +69,7 @@ function Footer({ isAboutPage }) {
                 <h4 className="title">Compañía</h4>
                 <ul>
                   <li>
-                    <a href="/404">Sobre nosotros</a>
+                    <a href="/aboutUS">Sobre nosotros</a>
                   </li>
                   <li>
                     <Link to="/jobsPage">Empleos</Link>
@@ -78,7 +78,7 @@ function Footer({ isAboutPage }) {
                     <a href="/404">Servicios</a>
                   </li>
                   <li>
-                    <a href="/404">Contacto</a>
+                    <a href="/contact">Contacto</a>
                   </li>
                 </ul>
               </div>
